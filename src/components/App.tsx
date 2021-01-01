@@ -1,5 +1,5 @@
 import { routes } from './routes'
-import store from '../redux/store'
+import store from './store'
 import { Provider } from 'react-redux'
 import { useRoutes } from "react-router-dom"
 

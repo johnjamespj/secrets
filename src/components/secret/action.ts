@@ -24,18 +24,16 @@ export const decrypting = () : SecretActionType => ({
     type: SecretAction.DECRYPTING
 })
 
-export const encryptMessage = (key: string, message: string): SecretActionType => {
+export const encryptMessage = (key: string, message: string): () => Promise<void> => {
     //TODO: Encryption
-    return {
-        type: SecretAction.ENCRYPT_MESSAGE,
-        payload: {}
+    return async () => {
+
     }
 }
 
-export const decryptMessage = (key: string, message: string): SecretActionType => {
+export const decryptMessage = (key: string, message: string): () => Promise<void> => {
     //TODO: Dencryption
-    return {
-        type: SecretAction.DECRYPT_MESSAGE,
-        payload: {}
+    return async () => {
+
     }
 }
