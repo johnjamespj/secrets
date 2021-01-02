@@ -12,9 +12,14 @@ export const reducers = combineReducers<StateType>({
     secret: secretReducer
 })
 
-const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))
+const middleware = [
+    thunkMiddleware
+]
 
-const store = createStore(reducers, composedEnhancer)
+const store = createStore(
+    reducers,
+    composeWithDevTools(applyMiddleware(...middleware))
+)
 
 export type Dispatcher = typeof store.dispatch;
 

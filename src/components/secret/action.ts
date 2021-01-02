@@ -1,7 +1,7 @@
 import { Dispatcher } from "../store"
 import { makeid, encrypt, decrypt } from "./secret"
 
-type ThunkFunction = (e: Dispatcher) => {}
+type ThunkFunction = (e: Dispatcher) => void
 
 export interface SecretActionType {
     type: SecretAction;
@@ -73,7 +73,7 @@ export const decrypting = (id: string): SecretActionType => ({
 })
 
 export const encryptMessage = (key: string, message: string, vanishMode: boolean): ThunkFunction => {
-    return async (dispatch: Dispatcher) => {
+    return (dispatch: Dispatcher) => {
         const id = makeid(10)
         dispatch(encrypting(id))
 
@@ -87,8 +87,8 @@ export const encryptMessage = (key: string, message: string, vanishMode: boolean
     }
 }
 
-export const decryptMessage = (key: string, salt: string, message: string): ThunkFunction => {
-    return async (dispatch: Dispatcher) => {
+export const decryptMessage = (key: string, salt: string): ThunkFunction => {
+    return (dispatch: Dispatcher) => {
         dispatch(decrypting(salt + key))
 
         decrypt(salt + key)

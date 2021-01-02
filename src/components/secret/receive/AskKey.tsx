@@ -8,13 +8,13 @@ interface AskKeySubmitData {
     key: string;
 }
 
-type AskKeyOnSubmitCallback = (x: AskKeySubmitData) => void;
+export type AskKeyOnSubmitCallback = (x: AskKeySubmitData) => void;
 
 interface AskKeyProps {
     onSubmit: AskKeyOnSubmitCallback
 }
 
-export function _AskKey({
+export function AskKey({
     onSubmit
 }: AskKeyProps) {
     const handleSubmit = (e: React.FormEvent) => {
@@ -29,8 +29,4 @@ export function _AskKey({
         <input name="key" type="text" placeholder="key" /><br />
         <button>unencrypt</button>
     </form>;
-}
-
-export function AskKey(){
-    return <div />
 }

@@ -20,30 +20,37 @@ export function secretReducer(state: SecretState = defaultState, action: SecretA
     switch (action.type) {
         case SecretAction.DECRYPTING:
             return Object.assign({}, state, {
-                loading: true
+                loading: true,
+                id: action.payload.id || null,
             });
         case SecretAction.ENCRYPTING:
-            return Object.assign({}, state, {
-                loading: true
+            return Object.assign({}, state, action.payload, {
+                loading: true,
+                id: action.payload.id || null,
             });
         case SecretAction.ENCRYPT_MESSAGE:
-            return Object.assign({}, state, action.payload, {
-                loading: false
+            return Object.assign({}, state, {
+                loading: false,
+                message: action.payload.message || null,
             });
 
         case SecretAction.DECRYPT_MESSAGE:
             return Object.assign({}, state, action.payload, {
-                loading: false
+                loading: false,
+                message: action.payload.message || null,
+                views: action.payload.views || null
             });
 
         case SecretAction.ERROR_DECRYPTING:
-            return Object.assign({}, state, action.payload, {
-                loading: false
+            return Object.assign({}, state, {
+                loading: false,
+                error: action.payload.error || null
             });
 
         case SecretAction.ERROR_ENCRYPTING:
             return Object.assign({}, state, action.payload, {
-                loading: false
+                loading: false,
+                error: action.payload.error || null
             });
 
         default:
