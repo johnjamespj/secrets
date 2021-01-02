@@ -1,16 +1,18 @@
 import { SecretAction, SecretActionType } from "./action"
 
 export interface SecretState {
-    key: string | null;
-    message?: string | null;
-    id?: string | null;
+    message: string | null;
+    id: string | null;
+    views: number | null;
     loading: boolean;
+    error: string | null;
 }
 
 const defaultState = {
-    key: null,
     message: null,
     id: null,
+    error: null,
+    views: null,
     loading: false
 }
 
@@ -30,6 +32,16 @@ export function secretReducer(state: SecretState = defaultState, action: SecretA
             });
 
         case SecretAction.DECRYPT_MESSAGE:
+            return Object.assign({}, state, action.payload, {
+                loading: false
+            });
+
+        case SecretAction.ERROR_DECRYPTING:
+            return Object.assign({}, state, action.payload, {
+                loading: false
+            });
+
+        case SecretAction.ERROR_ENCRYPTING:
             return Object.assign({}, state, action.payload, {
                 loading: false
             });
