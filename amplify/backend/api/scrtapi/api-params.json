@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/secret",
+            "lambdaFunction": "secret",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/secret"
+        }
+    ],
+    "resourceName": "scrtapi",
+    "apiName": "scrtapi",
+    "functionArns": [
+        {
+            "lambdaFunction": "secret"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-secrets-dev-193723-authRole",
+        "unAuthRoleName": "amplify-secrets-dev-193723-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "secret",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

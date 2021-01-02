@@ -1,0 +1,5 @@
+{
+    "tableName": "scrtstore",
+    "partitionKeyName": "id",
+    "partitionKeyType": "S"
+}

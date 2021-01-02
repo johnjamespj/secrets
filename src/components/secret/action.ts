@@ -19,7 +19,7 @@ export const encrypting = (): SecretActionType => ({
     type: SecretAction.ENCRYPTING
 })
 
-export const decrypting = () : SecretActionType => ({
+export const decrypting = (): SecretActionType => ({
     payload: {},
     type: SecretAction.DECRYPTING
 })
