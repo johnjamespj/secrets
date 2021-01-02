@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 import { StateType } from "../../store";
 import { SecretState } from "../reducer";
 
@@ -10,12 +10,17 @@ function Loading() {
 
 interface ShowMessageProps {
   message: string;
+  views?: number | null;
 }
 
-export function _ShowMessage({
-  message
+export function ShowMessageUI({
+  message,
+  views = 0
 }: ShowMessageProps) {
-  return <div>{message}</div>;
+  return <div>
+    <div>{message}</div>
+    {views && <div>Views: {views}</div>}
+  </div>;
 }
 
 export function ShowMessage() {
@@ -23,11 +28,11 @@ export function ShowMessage() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (secret.error !== null)
+    if (secret.error !== null || (secret.message === null && !secret.loading))
       navigate('../')
   }, [secret])
 
   return secret.loading ? <Loading /> : (
-    secret.error === null ? <_ShowMessage message={secret.message || ""} /> : <div />
+    secret.error === null ? <ShowMessageUI message={secret.message || ""} views={secret.views} /> : <div />
   )
 }

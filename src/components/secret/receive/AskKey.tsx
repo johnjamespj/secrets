@@ -11,11 +11,13 @@ interface AskKeySubmitData {
 export type AskKeyOnSubmitCallback = (x: AskKeySubmitData) => void;
 
 interface AskKeyProps {
-    onSubmit: AskKeyOnSubmitCallback
+    onSubmit: AskKeyOnSubmitCallback;
+    error?: boolean;
 }
 
 export function AskKey({
-    onSubmit
+    onSubmit,
+    error = false
 }: AskKeyProps) {
     const handleSubmit = (e: React.FormEvent) => {
         if (e.target)
@@ -27,6 +29,7 @@ export function AskKey({
 
     return <form onSubmit={handleSubmit}>
         <input name="key" type="text" placeholder="key" /><br />
+        {error && <div style={{ color: 'red' }}>Invalid key or text vanished</div>}
         <button>unencrypt</button>
     </form>;
 }
