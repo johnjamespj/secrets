@@ -53,6 +53,9 @@ export function secretReducer(state: SecretState = defaultState, action: SecretA
                 error: action.payload.error || null
             });
 
+        case SecretAction.RESET:
+            return Object.assign({}, defaultState)
+
         default:
             return state;
     }

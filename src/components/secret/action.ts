@@ -10,7 +10,7 @@ export interface SecretActionType {
         id?: string | null;
         error?: string | null;
         views?: number | null;
-        loading: boolean;
+        loading?: boolean;
     };
 }
 
@@ -20,7 +20,8 @@ export enum SecretAction {
     ENCRYPTING = "secret/encrypting",
     DECRYPTING = "secret/decrypting",
     ERROR_ENCRYPTING = "secret/error-encrypting",
-    ERROR_DECRYPTING = "secret/error-decrypting"
+    ERROR_DECRYPTING = "secret/error-decrypting",
+    RESET = "secret/reset"
 }
 
 export const encrypting = (id: string): SecretActionType => ({
@@ -100,3 +101,8 @@ export const decryptMessage = (key: string, salt: string): ThunkFunction => {
             })
     }
 }
+
+export const resetSecretData = (): SecretActionType => ({
+    payload: {},
+    type: SecretAction.RESET
+})
